@@ -1,14 +1,12 @@
 package org.example;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        List<Integer> results  = new ArrayList<>();
+
         Scanner sc = new Scanner(System.in);
         do  {
             // obtain the data
@@ -19,40 +17,16 @@ public class Main {
             System.out.print("Enter an arithmetic operator: ");
             char operator = sc.next().charAt(0);
 
-            // perform the calculation
-            int result = 0;
-            switch (operator) {
-                case '-':
-                    result = operand1 - operand2;
-                    break;
-                case '+':
-                    result = operand1 + operand2;
-                    break;
-                case '*':
-                    result = operand1 * operand2;
-                    break;
-                case '/':
-                    if (operand2 == 0) {
-                        System.out.println("Error: Division by 0 cannot be performed.");
-                        return;
-                    }
-                    else {
-                        result = operand1 / operand2;
-                    }
-                    break;
-                default:
-                    System.out.println("Error: Invalid operator.");
-                    return;
-            }
-            // storing results and updating index
-            results.add(result);
+           Calculator calc = new Calculator();
+           int result = calc.calculate(operand1, operand2, operator);
             // showing results
             System.out.println("Result: " + result);
-
+            /*
             System.out.println("Would you like to delete the oldest calculation result? (Enter remove to delete)");
             if (sc.next().equals("remove")) {
                 results.removeFirst();
             }
+
 
             System.out.println("Would you like to view the stored calculation results? (Enter inquiry to view)");
             if (sc.next().equals("inquiry")) {
@@ -62,6 +36,7 @@ public class Main {
                 }
                 System.out.println(results.getLast());
             }
+             */
 
             System.out.println("Would you like to calculate more? (Enter exit to quit)");
         } while (!sc.next().equals("exit"));
