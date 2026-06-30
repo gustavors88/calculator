@@ -1,16 +1,16 @@
 package org.example;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    private static final int SIZE = 10;
     public static void main(String[] args) {
-        int[] results = new int[SIZE];
-        int index = 0;
+        List<Integer> results  = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        String cont = "";
-        while (!cont.equals("exit"))  {
+        do  {
             // obtain the data
             System.out.print("Enter the first number: ");
             int operand1 = sc.nextInt();
@@ -45,17 +45,26 @@ public class Main {
                     return;
             }
             // storing results and updating index
-            results[index] = result;
-            index++;
-            // restarts index if index goes outside the array
-            if (index == SIZE) {
-                index = 0;
-            }
+            results.add(result);
             // showing results
             System.out.println("Result: " + result);
+
+            System.out.println("Would you like to delete the oldest calculation result? (Enter remove to delete)");
+            if (sc.next().equals("remove")) {
+                results.removeFirst();
+            }
+
+            System.out.println("Would you like to view the stored calculation results? (Enter inquiry to view)");
+            if (sc.next().equals("inquiry")) {
+                System.out.print("Results: ");
+                for (int res : results.subList(0, results.size() - 1)) {
+                    System.out.print(res + ", ");
+                }
+                System.out.println(results.getLast());
+            }
+
             System.out.println("Would you like to calculate more? (Enter exit to quit)");
-            cont = sc.next();
-        }
+        } while (!sc.next().equals("exit"));
 
     }
 }
