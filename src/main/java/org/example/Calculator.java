@@ -2,15 +2,12 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Calculator {
-    private List<Integer> results;
-    Scanner sc = new Scanner(System.in);
+    private final List<Integer> results;
 
     public Calculator() {
         results =  new ArrayList<>();
-        sc = new Scanner(System.in);
     }
 
     public int calculate(int operand1, int operand2, char operator) {
@@ -43,4 +40,25 @@ public class Calculator {
         results.add(result);
         return result;
     }
+
+    public void removeOldestResult() {
+        results.removeFirst();
+    }
+
+    public void showResults() {
+        System.out.print("Results: ");
+        for (int res : results.subList(0, results.size() - 1)) {
+            System.out.print(res + ", ");
+        }
+        System.out.println(results.getLast());
+    }
+
+    public List<Integer> getResults() {
+        return results;
+    }
+
+    public boolean setResult(int result) {
+        return results.add(result);
+    }
+
 }

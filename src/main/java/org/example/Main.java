@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+        Calculator calc = new Calculator();
         do  {
             // obtain the data
             System.out.print("Enter the first number: ");
@@ -17,26 +18,19 @@ public class Main {
             System.out.print("Enter an arithmetic operator: ");
             char operator = sc.next().charAt(0);
 
-           Calculator calc = new Calculator();
            int result = calc.calculate(operand1, operand2, operator);
             // showing results
             System.out.println("Result: " + result);
-            /*
+
             System.out.println("Would you like to delete the oldest calculation result? (Enter remove to delete)");
             if (sc.next().equals("remove")) {
-                results.removeFirst();
+                calc.removeOldestResult();
             }
-
 
             System.out.println("Would you like to view the stored calculation results? (Enter inquiry to view)");
             if (sc.next().equals("inquiry")) {
-                System.out.print("Results: ");
-                for (int res : results.subList(0, results.size() - 1)) {
-                    System.out.print(res + ", ");
-                }
-                System.out.println(results.getLast());
+                calc.showResults();
             }
-             */
 
             System.out.println("Would you like to calculate more? (Enter exit to quit)");
         } while (!sc.next().equals("exit"));
