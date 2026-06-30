@@ -2,6 +2,7 @@ package org.example;
 
 
 public class ArithmeticCalculator  extends Calculator{
+
     public int calculate(int operand1, int operand2, char operator) {
         // perform the calculation
         int result = 0;
